@@ -1,8 +1,8 @@
-package com.belfastdev.examplefeature.ui;
+package com.belfastdev.startercode.examplefeature.ui;
 
-import com.belfastdev.base.ui.ViewToolbar;
-import com.belfastdev.examplefeature.Task;
-import com.belfastdev.examplefeature.TaskService;
+import com.belfastdev.startercode.ui.ViewToolbar;
+import com.belfastdev.startercode.examplefeature.Task;
+import com.belfastdev.startercode.examplefeature.TaskService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.datepicker.DatePicker;

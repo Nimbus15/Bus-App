@@ -1,4 +1,4 @@
-package com.belfastdev.examplefeature;
+package com.belfastdev.startercode.examplefeature;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;

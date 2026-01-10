@@ -1,4 +1,4 @@
-package com.belfastdev.examplefeature;
+package com.belfastdev.startercode.examplefeature;
 
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.domain.Pageable;

@@ -1,4 +1,4 @@
-package com.belfastdev.base.ui;
+package com.belfastdev.startercode.ui;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;

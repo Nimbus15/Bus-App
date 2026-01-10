@@ -1,5 +1,7 @@
 package com.belfastdev.examplefeature;
 
+import com.belfastdev.startercode.examplefeature.Task;
+import com.belfastdev.startercode.examplefeature.TaskService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

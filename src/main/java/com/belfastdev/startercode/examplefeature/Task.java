@@ -1,4 +1,4 @@
-package com.belfastdev.examplefeature;
+package com.belfastdev.startercode.examplefeature;
 
 import jakarta.persistence.*;
 import org.jspecify.annotations.Nullable;
