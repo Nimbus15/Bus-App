@@ -1,6 +1,10 @@
 # My Application README
 
-- [ ] TODO Replace or update this README with instructions relevant to your application
+The application will be the frontend interface for a bus tracker application for Belfast Translink. 
+It consists of a 3-tier architecture. The backend is found in the link: https://github.com/dillionhuston/bus-tracker-api 
+.The aim of the project will be to track the timing of the buses so that the user will get a better estimate of Belfast Translink 
+travel times.
+
 
 ## Project Structure
 
@@ -39,10 +43,10 @@ The project follows a *feature-based package structure*, organizing code by *fun
 architectural layers. It includes two feature packages: `base` and `examplefeature`.
 
 * The `base` package contains classes meant for reuse across different features, either through composition or 
-  inheritance. You can use them as-is, tweak them to your needs, or remove them.
+  inheritance. 
 * The `examplefeature` package is an example feature package that demonstrates the structure. It represents a 
   *self-contained unit of functionality*, including UI components, business logic, data access, and an integration test.
-  Once you create your own features, *you'll remove this package*.
+  
 
 
 ## Starting in Development Mode
@@ -68,7 +72,7 @@ To build a Docker image, run:
 docker build -t my-application:latest .
 ```
 
-If you use commercial components, pass the license key as a build secret:
+If using commercial components, pass the license key as a build secret:
 
 ```bash
 docker build --secret id=proKey,src=$HOME/.vaadin/proKey .
@@ -77,4 +81,4 @@ docker build --secret id=proKey,src=$HOME/.vaadin/proKey .
 ## Next Steps
 
 The [Building Apps](https://vaadin.com/docs/v25/building-apps) guides contain hands-on advice for adding features to 
-your application.
+the application.
