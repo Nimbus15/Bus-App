@@ -1,10 +1,10 @@
 package com.belfastdev.model;
 
-public class Route {
+public class BusRoute {
     private String id;
     private String name;
 
-    public Route(String id, String name) {
+    public BusRoute(String id, String name) {
         this.id = id;
         this.name = name;
     }

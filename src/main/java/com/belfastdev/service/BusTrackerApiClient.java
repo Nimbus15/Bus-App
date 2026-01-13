@@ -1,14 +1,11 @@
 package com.belfastdev.service;
 
-import com.belfastdev.model.Route;
+import com.belfastdev.model.BusRoute;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.RouteMatcher;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.util.*;
 
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Service
 public class BusTrackerApiClient {
@@ -22,10 +19,10 @@ public class BusTrackerApiClient {
     }
 
     //Get all routes
-    public Flux<Route> getRoutes() {
+    public Flux<BusRoute> getRoutes() {
         return webClient.get()
                 .uri(apiBaseUrl + "/route/routes")
                 .retrieve()
-                .bodyToFlux(Route.class);
+                .bodyToFlux(BusRoute.class);
     }
 }
