@@ -3,6 +3,8 @@ package com.belfastdev.model;
 public class BusRoute {
     private String id;
     private String name;
+    private String direction;//
+
 
     public BusRoute(String id, String name) {
         this.id = id;
