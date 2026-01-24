@@ -17,8 +17,8 @@ public class MockBusTrackerApiClient extends BusTrackerApiClient{
     }
 
     @Override
-    public Flux<BusRoute> getRoutes(){
-        // Return fask test dawta
+    public Flux<BusRoute> getAllBusRoutes(){
+        // Return fake test data
         List<BusRoute> mockBusRoutes = List.of(
                 new BusRoute("1L", "City Center Loop"),
                 new BusRoute("2L", "Airport Express"),
