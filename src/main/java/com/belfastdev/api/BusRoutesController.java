@@ -30,7 +30,7 @@ public class BusRoutesController {
     }
 
     @GetMapping("/routes/{routeId}/stops")
-    public Flux<BusRouteStop> getBusStops(@PathVariable("id") UUID id){
+    public Flux<BusRouteStop> getBusStops(@PathVariable("routeId") UUID id){
         System.out.println("getStop endpoint hit");
         return client.getBusStops(id);
     }

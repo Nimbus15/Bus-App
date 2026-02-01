@@ -37,7 +37,7 @@ public class BusTrackerApiClient {
     public Flux<BusRouteStop> getBusStops(UUID routeId){
         System.out.println("getBusStops endpoint hit");
         return webClient.get()
-                .uri(apiBaseUrl + "/route/routes" + routeId + "/stops")
+                .uri(apiBaseUrl + "/route/routes/" + routeId + "/stops")
                 .retrieve()
                 .bodyToFlux(BusRouteStop.class);
     }
