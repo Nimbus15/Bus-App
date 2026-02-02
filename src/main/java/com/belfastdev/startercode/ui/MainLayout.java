@@ -1,7 +1,12 @@
 package com.belfastdev.startercode.ui;
 
+import com.belfastdev.service.BusTrackerApiClient;
+import com.belfastdev.view.BusJourneyView;
+import com.belfastdev.view.BusRouteView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -12,44 +17,36 @@ import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.router.Layout;
+import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.menu.MenuConfiguration;
 import com.vaadin.flow.server.menu.MenuEntry;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Layout
 public final class MainLayout extends AppLayout {
+    public MainLayout() {
+        createHeader();
+        createDrawer();
+    }
+    private void createHeader() {
+        H1 logo = new H1("🚌 Belfast Bus Tracker");
+        logo.addClassNames("text-l", "m-m");
 
-    MainLayout() {
-        setPrimarySection(Section.DRAWER);
-        addToDrawer(createHeader(), new Scroller(createSideNav()));
+        addToNavbar(new DrawerToggle(), logo);
     }
 
-    private Component createHeader() {
-        // TODO Replace with real application logo and name
-        var appLogo = VaadinIcon.CUBES.create();
-        appLogo.setSize("48px");
-        appLogo.setColor("green");
+    private void createDrawer() {
+        // Navigation links will go here
+        addToDrawer(new VerticalLayout(
+                createNavLink("Routes", BusRouteView.class)
 
-        var appName = new Span("My Application");
-        appName.getStyle().setFontWeight(Style.FontWeight.BOLD);
-
-        var header = new VerticalLayout(appLogo, appName);
-        header.setAlignItems(FlexComponent.Alignment.CENTER);
-        return header;
+        ));
     }
 
-    private SideNav createSideNav() {
-        var nav = new SideNav();
-        nav.addClassNames(LumoUtility.Margin.Horizontal.MEDIUM);
-        MenuConfiguration.getMenuEntries().forEach(entry -> nav.addItem(createSideNavItem(entry)));
-        return nav;
-    }
-
-    private SideNavItem createSideNavItem(MenuEntry menuEntry) {
-        if (menuEntry.icon() != null) {
-            return new SideNavItem(menuEntry.title(), menuEntry.path(), new Icon(menuEntry.icon()));
-        } else {
-            return new SideNavItem(menuEntry.title(), menuEntry.path());
-        }
+    private RouterLink createNavLink(String text, Class<? extends Component> view) {
+        RouterLink link = new RouterLink(text, view);
+        link.addClassNames("nav-link");
+        return link;
     }
 }
