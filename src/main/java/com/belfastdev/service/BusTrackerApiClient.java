@@ -3,51 +3,52 @@ package com.belfastdev.service;
 import com.belfastdev.model.BusJourney;
 import com.belfastdev.model.BusRoute;
 import com.belfastdev.model.BusRouteStop;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-import org.jspecify.annotations.Nullable;
-import org.springframework.beans.factory.annotation.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.reactive.function.client.WebClient;
-
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
 @Service
-public class BusTrackerApiClient {
+@Profile("!mock")
+public class BusTrackerApiClient implements BusTrackerService {
+    private static final Logger log = LoggerFactory.getLogger(BusTrackerApiClient.class);
+
     private final WebClient webClient;
 
-    @Value("${bus.tracker.api.url:http://localhost:8000}")
-    private String apiBaseUrl;
-
-    public BusTrackerApiClient(WebClient.Builder webClientBuilder){
-        this.webClient = webClientBuilder.build();
+    public BusTrackerApiClient(WebClient webClient) {
+        this.webClient = webClient;
     }
 
-    //Get all routes
+    @Override
     public Flux<BusRoute> getAllBusRoutes() {
+        log.debug("Fetching all bus routes");
         return webClient.get()
-                .uri(apiBaseUrl + "/route/routes")
+                .uri("/route/routes")
                 .retrieve()
                 .bodyToFlux(BusRoute.class);
     }
 
-    public Flux<BusRouteStop> getBusStops(UUID routeId){
-        System.out.println("getBusStops endpoint hit");
+    @Override
+    public Flux<BusRouteStop> getBusStops(UUID routeId) {
+        log.debug("Fetching stops for route {}", routeId);
         return webClient.get()
-                .uri(apiBaseUrl + "/route/routes/" + routeId + "/stops")
+                .uri("/route/routes/{id}/stops", routeId)
                 .retrieve()
                 .bodyToFlux(BusRouteStop.class);
     }
 
-    public @Nullable BusJourney addJourney(@Valid @NotNull @RequestBody BusJourney busJourney){
+    @Override
+    public Mono<BusJourney> addJourney(BusJourney busJourney) {
+        log.debug("Creating journey on route {}", busJourney.getRouteId());
         return webClient.post()
-                .uri(apiBaseUrl + "/journeys/start")
+                .uri("/journeys/start")
                 .bodyValue(busJourney)
                 .retrieve()
-                .bodyToMono(BusJourney.class)
-                .block();
+                .bodyToMono(BusJourney.class);
     }
 }
